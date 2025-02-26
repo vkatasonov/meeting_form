@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meeting Confirmation</title>
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+    <div class="banner"></div>
+    <div class="confirmation-container">
+        <div class="confirmation-box">
+            <h1 class="title">Confirm Your Meeting</h1>
+            <div class="meeting-details">
+                <div class="detail-item">
+                    <img src="schedule_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" alt="Calendar" class="icon">
+                    <span id="meeting-datetime"></span>
+                </div>
+                <div class="detail-item">
+                    <img src="location_on_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" alt="Location" class="icon">
+                    <span>Booth #___ at [Exhibition name] on-site</span>
+                </div>
+                <div class="detail-item">
+                    <img src="language_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" alt="Language" class="icon">
+                    <span id="meeting-language"></span>
+                </div>
+            </div>
+
+            <form id="confirmation-form">
+                <div class="form-group">
+                    <label for="name">Name<span class="required">*</span></label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email<span class="required">*</span></label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <button type="button" class="add-guest-btn" id="addGuestBtn">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8 0V16M0 8H16" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    Add Guest
+                </button>
+                <div class="form-group" id="guestEmailGroup" style="display: none;">
+                    <label for="guest-emails">Guest email(s)</label>
+                    <input type="text" id="guest-emails" name="guest-emails">
+                    <small style="display: block; color: #666; font-size: 12px; margin-top: 4px; padding-left: 20px;">Enter emails separated by comma</small>
+                </div>
+                <div class="button-group">
+                    <button type="button" class="cancel-btn" onclick="window.location.href='index.html'">Cancel</button>
+                    <button type="submit" class="submit-btn">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Get URL parameters
+        const params = new URLSearchParams(window.location.search);
+        const date = params.get('date');
+        const time = params.get('time');
+        const duration = params.get('duration');
+
+        // Format and display meeting details
+        const dateObj = new Date(date);
+        const formattedDate = dateObj.toLocaleDateString('en-US', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+
+        // Clean up time string by removing 'Confirm' if present
+        const cleanTime = time.replace('Confirm', '').trim();
+
+        document.getElementById('meeting-datetime').textContent = 
+            `${formattedDate} at ${cleanTime} (${duration})`;
+
+        // Display selected language
+        const language = params.get('language');
+        document.getElementById('meeting-language').textContent = language;
+
+        // Handle form submission
+        document.getElementById('confirmation-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const data = {
+                date,
+                time,
+                duration,
+                name: formData.get('name'),
+                email: formData.get('email'),
+                guestEmails: formData.get('guest-emails')
+            };
+            
+            // Here you would typically send this data to your backend
+            console.log('Form submitted:', data);
+            alert('Meeting scheduled successfully!');
+            window.location.href = 'index.html';
+        });
+
+        // Handle Add Guest button click
+        document.getElementById('addGuestBtn').addEventListener('click', function() {
+            this.style.display = 'none';
+            document.getElementById('guestEmailGroup').style.display = 'block';
+        });
+    </script>
+</body>
+</html>

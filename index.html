@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meeting Scheduler</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="banner"></div>
+    <div class="container">
+        <div class="header">
+            <div class="header-content">
+                <h1 class="title">[Exhibition name] @Stand ____</h1>
+                <p class="subtitle">Let's do great thing together!</p>
+                <div class="duration">
+                    <img src="schedule_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" alt="Schedule icon" class="icon">
+                    <button class="duration-btn active">15 min</button>
+                    <button class="duration-btn">30 min</button>
+                    <button class="duration-btn">60 min</button>
+                </div>
+                <div class="location">
+                    <img src="location_on_24dp_E8EAED_FILL0_wght400_GRAD0_opsz24.svg" alt="Location icon" class="icon">
+                    Booth #___ at [Exhibition name] on-site
+                </div>
+            </div>
+            <img src="Logo.svg" alt="Logo" class="logo">
+        </div>
+
+        <div class="controls">
+            <select id="timezone">
+                <option>European Standard time</option>
+                <!-- Add more timezone options -->
+            </select>
+            <div class="language-control">
+                <label for="language">Meeting language:</label>
+                <select id="language">
+                    <option>English</option>
+                    <option>العربية</option>
+                    <option>Español</option>
+                    <option>Русский</option>
+                    <option>Other</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="calendar-container">
+            <div class="calendar">
+                <div class="calendar-header">
+                    <button class="nav-btn">&lt;</button>
+                    <h2>February 2025</h2>
+                    <button class="nav-btn">&gt;</button>
+                </div>
+                <div class="calendar-grid">
+                    <div class="calendar-day">MON</div>
+                    <div class="calendar-day">TUE</div>
+                    <div class="calendar-day">WED</div>
+                    <div class="calendar-day">THU</div>
+                    <div class="calendar-day">FRI</div>
+                    <div class="calendar-day">SAT</div>
+                    <div class="calendar-day">SUN</div>
+                    <!-- Calendar dates will be inserted here via JavaScript -->
+                </div>
+            </div>
+            <div class="time-slots">
+                <!-- Time slots will be inserted here via JavaScript -->
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <p class="cta-text">Don't have time to meet at Location? We'll find the best time for you</p>
+            <a href="https://t.me/username" target="_blank" class="telegram-btn">
+                <svg class="telegram-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20.665 3.717l-17.73 6.837c-1.21.486-1.203 1.161-.222 1.462l4.552 1.42l10.532-6.645c.498-.303.953-.14.579.192l-8.533 7.701l-.321 4.71c.47 0 .677-.216.94-.47l2.253-2.181l4.685 3.458c.86.476 1.48.231 1.692-.798l3.06-14.422c.314-1.258-.485-1.828-1.487-1.264z" fill="currentColor"/>
+                </svg>
+                Contact us on Telegram
+            </a>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
